@@ -1,5 +1,5 @@
 attrs>=22.2.0
-autobahn[twisted,encryption,compress,serialization,scram]>=23.1.2
+autobahn[twisted,encryption,compress,serialization,scram,xbr]>=23.1.2
 base58>=2.1.1
 bcrypt>=4.0.1
 bitstring>=4.0.1
@@ -11,9 +11,9 @@ constantly>=15.1.0
 cookiecutter>=2.1.1
 cryptography>=39.0.0
 docker>=6.0.1
-eth-abi>=4.0.0
+eth-abi>=5.0.0
 eth-account>=0.11.0
-eth-typing>3.2.0
+eth-typing>=4.0.0
 flask>=2.2.2
 py-cid @ git+https://github.com/crossbario/py-cid.git@remove-dep-upper-limits#egg=py-cid
 py-multihash>=2.0.1
