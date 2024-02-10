@@ -1,5 +1,5 @@
 attrs>=22.2.0
-autobahn[twisted,encryption,compress,serialization,scram,xbr]>=23.1.2
+autobahn[twisted,encryption,compress,serialization,scram]>=23.1.2
 base58>=2.1.1
 bcrypt>=4.0.1
 bitstring>=4.0.1
@@ -11,14 +11,12 @@ constantly>=15.1.0
 cookiecutter>=2.1.1
 cryptography>=39.0.0
 docker>=6.0.1
-# required for python 3.11+ https://github.com/ethereum/eth-abi/pull/194
-eth-abi @ git+https://github.com/ethereum/eth-abi.git@v4.0.0-beta.2#egg=eth-abi
-# required for python 3.11+ (https://github.com/ethereum/eth-account/pull/212)
-eth-account @ git+https://github.com/crossbario/eth-account.git@fix-215#egg=eth-account
-eth-typing @ git+https://github.com/ethereum/eth-typing.git@v3.2.0#egg=eth-typing
+eth-abi>=4.0.0
+eth-account>=0.11.0
+eth-typing>3.2.0
 flask>=2.2.2
 py-cid @ git+https://github.com/crossbario/py-cid.git@remove-dep-upper-limits#egg=py-cid
-py-multihash @ git+https://github.com/crossbario/py-multihash.git@remove-dep-version-limits#egg=py-multihash
+py-multihash>=2.0.1
 # FIXME: twisted/http2 needs <4 => h2>=4.1.0
 h2>=3.2.0,<4.0.0
 hexbytes>=0.3.0
@@ -33,7 +31,7 @@ iso8601>=1.1.0
 jinja2-highlight>=0.6.1
 jinja2>=3.1.2
 jsonschema>=4.0.0
-lmdb>=1.4.0
+lmdb @ git+https://github.com/Bye-lemon/py-lmdb.git@master#egg=lmdb
 MarkupSafe>=2.1.2
 mistune>=2.0.4
 morphys>=1.0
@@ -86,3 +84,4 @@ wsaccel>=0.6.4; platform_python_implementation=='CPython'
 xbr>=21.2.1
 zlmdb>=23.1.1
 zope.interface>=5.5.2
+python-snappy @ git+https://github.com/andrix/python-snappy.git@master#egg=python-snappy
