@@ -1,0 +1,40 @@
+name: build docs
+on:
+    workflow_dispatch:
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - name: Set environment
+              run: |
+                    echo CROSSBAR_BUILD_DATE=`date -u +"%Y-%m-%d"` >> $GITHUB_ENV
+                    echo CROSSBAR_VCS_REF=`git rev-parse --short ${GITHUB_SHA}` >> $GITHUB_ENV
+                    echo CROSSBAR_BUILD_ID=$(date --utc +%Y%m%d)-$(git rev-parse --short ${GITHUB_SHA}) >> $GITHUB_ENV
+                    echo CROSSBAR_VERSION=$(grep -E '^(__version__)' ./crossbar/_version.py | cut -d ' ' -f3 | sed -e 's|[u"'\'']||g') >> $GITHUB_ENV
+      
+            - name: Print environment
+              run: |
+                echo ""
+                echo "Build environment configured:"
+                echo ""
+                echo "  CROSSBAR_BUILD_DATE = ${CROSSBAR_BUILD_DATE}"
+                echo "  CROSSBAR_BUILD_ID   = ${CROSSBAR_BUILD_ID}"
+                echo "  CROSSBAR_VCS_REF    = ${CROSSBAR_VCS_REF}"
+                echo "  CROSSBAR_VERSION    = ${CROSSBAR_VERSION}"
+                echo ""
+                echo ""
+            - name: Set up Python 3.11
+              uses: actions/setup-python@v5
+              with:
+                python-version: '3.11'
+      
+            - name: Install Python package dependencies
+              run: |
+                python -m pip install --upgrade pip
+                pip install -r requirements-dev.txt
+            - name: Install crossbar
+              run: |
+                pip install .
+            - run: make docs
+            
